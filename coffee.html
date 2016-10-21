@@ -44,7 +44,9 @@
     </div>
 </div>
 
-<script type="text/javascript" src="https://code.jquery.com/jquery.js"></script>
+<script src="https://code.jquery.com/jquery.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
 
 <script>
 
@@ -57,6 +59,8 @@
     var latte = $("#latte");
     var hotChocolate = $("#hot-chocolate");
 
+    $('h4').hide();
+
     myImage.attr('src', 'static/coffee_beans.jpg');
 
     // myImage = document.getElementById("coffee-image");
@@ -67,7 +71,7 @@
     // hotChocolate = document.getElementById("hot-chocolate");
 
     function makeCoffee(drinkType) {
-        myImage.attr('src', 'static/coffee_machine.jpg');
+        myImage.attr('src', 'static/coffee_machine.jpg').effect( "shake" );
         setTimeout(function(){
 
             myImage.attr('src', 'static/coffee_mug.jpg');
@@ -81,8 +85,8 @@
         // }, 4000);
         drinksOrdered.push(drinkType);
         console.log(drinksOrdered);
-        
         myRevenueMessage.html(revenue());
+        $('h4').fadeIn();
     }
 
     espresso.on('click', function () { makeCoffee('espresso'); });
@@ -105,6 +109,7 @@
         for (var i=0; i < drinksOrdered.length; i++) {
             total = total + prices[drinksOrdered[i]];
         }
+        $('h4').hide();
 
         return total.toFixed(2);
     }
